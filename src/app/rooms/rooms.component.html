@@ -1,0 +1,15 @@
+
+<h1>Welcome to {{hotelName}}</h1>
+
+<div [hidden]="hideRooms">
+    Numer of Rooms:
+
+    <div [innerText]="numberOfRooms"></div>
+</div>
+
+
+
+<button (click) = "toggle()" >Toggle</button>
+
+<!-- tương tự với -->
+<!-- document.getElementById('numberOfRooms').innerText = numberOfRooms; -->
