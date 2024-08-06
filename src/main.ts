@@ -7,4 +7,3 @@ import { RoomsComponent } from './app/rooms/rooms.component';
 
 bootstrapApplication(AppComponent, appConfig)
   .catch((err) => console.error(err));
-bootstrapApplication(RoomsComponent).catch(err => console.error(err));
