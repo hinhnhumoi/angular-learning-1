@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 import { Room, RoomDetails } from './room';
 import { CommonModule } from '@angular/common';
 import { RoomsListComponent } from './rooms-list/rooms-list.component';
@@ -11,7 +11,7 @@ import { RoomsListComponent } from './rooms-list/rooms-list.component';
   templateUrl: './rooms.component.html',
   styleUrl: './rooms.component.scss'
 })
-export class RoomsComponent {
+export class RoomsComponent implements DoCheck{
 
   hotelName = 'Hilton Hotel';
   numberOfRooms = 10;
@@ -86,5 +86,9 @@ export class RoomsComponent {
     // this.roomList.push(room);
 
     this.roomList = [...this.roomList, room];
+  }
+
+  ngDoCheck(): void {
+    console.log("on changes is called");
   }
 }
