@@ -1,4 +1,4 @@
-import { AfterViewChecked, AfterViewInit, Component, DoCheck, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Room, RoomDetails } from './room';
 import { CommonModule } from '@angular/common';
 import { RoomsListComponent } from './rooms-list/rooms-list.component';
@@ -29,6 +29,8 @@ export class RoomsComponent implements DoCheck, AfterViewInit, AfterViewChecked{
   roomList: RoomDetails[] = [];
 
   @ViewChild(HeaderComponent) headerComponent! : HeaderComponent;
+
+  @ViewChildren(HeaderComponent) headerChildrens! : QueryList<HeaderComponent>; 
 
   ngOnInit() : void {
 
@@ -97,8 +99,9 @@ export class RoomsComponent implements DoCheck, AfterViewInit, AfterViewChecked{
   }
   ngAfterViewInit(): void {
     this.headerComponent.title = "Room view";
+    this.headerChildrens.last.title = "Last Title";
   }
-  
+
   ngAfterViewChecked(): void {
     throw new Error('Method not implemented.');
   }
