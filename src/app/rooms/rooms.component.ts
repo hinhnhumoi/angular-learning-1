@@ -1,17 +1,18 @@
-import { Component, DoCheck } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, ViewChild } from '@angular/core';
 import { Room, RoomDetails } from './room';
 import { CommonModule } from '@angular/common';
 import { RoomsListComponent } from './rooms-list/rooms-list.component';
+import { HeaderComponent } from "../header/header.component";
 
 
 @Component({
   selector: 'hinv-rooms',
   standalone: true,
-  imports: [CommonModule, RoomsListComponent],
+  imports: [CommonModule, RoomsListComponent, HeaderComponent],
   templateUrl: './rooms.component.html',
   styleUrl: './rooms.component.scss'
 })
-export class RoomsComponent implements DoCheck{
+export class RoomsComponent implements DoCheck, AfterViewInit, AfterViewChecked{
 
   hotelName = 'Hilton Hotel';
   numberOfRooms = 10;
@@ -27,7 +28,10 @@ export class RoomsComponent implements DoCheck{
 
   roomList: RoomDetails[] = [];
 
+  @ViewChild(HeaderComponent) headerComponent! : HeaderComponent;
+
   ngOnInit() : void {
+
     this.roomList = [
       {
         roomNumber : 1,
@@ -89,6 +93,14 @@ export class RoomsComponent implements DoCheck{
   }
 
   ngDoCheck(): void {
-    console.log("on changes is called");
+    // console.log("on changes is called");
+  }
+  ngAfterViewInit(): void {
+    this.headerComponent.title = "Room view";
+  }
+  
+  ngAfterViewChecked(): void {
+    throw new Error('Method not implemented.');
   }
 }
+
