@@ -1,4 +1,4 @@
-import { AfterViewChecked, AfterViewInit, Component, DoCheck, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnDestroy, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Room, RoomDetails } from './room';
 import { CommonModule } from '@angular/common';
 import { RoomsListComponent } from './rooms-list/rooms-list.component';
@@ -14,9 +14,9 @@ import { HeaderComponent } from "../header/header.component";
 })
 export class RoomsComponent implements DoCheck, AfterViewInit, AfterViewChecked{
 
-  hotelName = 'Hilton Hotel';
-  numberOfRooms = 10;
-  hideRooms = false;
+  hotelName : string = 'Hilton Hotel';
+  numberOfRooms : number = 10;
+  hideRooms : boolean = false;
   rooms: Room = {
     totalRooms: 20,
     availableRooms: 10,

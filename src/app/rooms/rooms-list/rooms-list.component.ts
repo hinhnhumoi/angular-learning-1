@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges } from '@angular/core';
 import { RoomDetails } from '../room';
 
 @Component({
@@ -10,7 +10,7 @@ import { RoomDetails } from '../room';
   styleUrl: './rooms-list.component.scss',
   changeDetection : ChangeDetectionStrategy.OnPush
 })
-export class RoomsListComponent implements OnChanges {
+export class RoomsListComponent implements OnChanges, OnDestroy {
 
   @Input() rooms : RoomDetails[] = [];
 
@@ -29,5 +29,10 @@ export class RoomsListComponent implements OnChanges {
       this.title = changes['title'].currentValue.toUpperCase();
     }
 
+  }
+
+  ngOnDestroy(): void {
+    console.log("ondestroy is called");
+    
   }
 }
