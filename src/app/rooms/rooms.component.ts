@@ -1,8 +1,9 @@
-import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnDestroy, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Room, RoomDetails } from './room';
 import { CommonModule } from '@angular/common';
 import { RoomsListComponent } from './rooms-list/rooms-list.component';
 import { HeaderComponent } from "../header/header.component";
+import { RoomsService } from './services/rooms.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { HeaderComponent } from "../header/header.component";
   templateUrl: './rooms.component.html',
   styleUrl: './rooms.component.scss'
 })
-export class RoomsComponent implements DoCheck, AfterViewInit, AfterViewChecked{
+export class RoomsComponent implements DoCheck, AfterViewInit, AfterViewChecked {
 
   hotelName : string = 'Hilton Hotel';
   numberOfRooms : number = 10;
@@ -32,40 +33,10 @@ export class RoomsComponent implements DoCheck, AfterViewInit, AfterViewChecked{
 
   @ViewChildren(HeaderComponent) headerChildrens! : QueryList<HeaderComponent>; 
 
-  ngOnInit() : void {
+  constructor(private roomService : RoomsService) {};
 
-    this.roomList = [
-      {
-        roomNumber : 1,
-        roomType: 'Deluxa Room',
-        amenities: 'Air Conditioner, Free Wi-Fi, TV, BathRoom, Kitchen',
-        price: 500,
-        photos: 'https://photolink/1',
-        checkinTime: new Date('05/08/2024'),
-        checkoutTime: new Date('10/08/2024'),
-        rating : 4.5
-      },
-      {
-        roomNumber : 2,
-        roomType: 'Deluxe Room',
-        amenities: 'Air Conditioner, Free Wi-Fi, TV, BathRoom, Kitchen',
-        price: 1000,
-        photos: 'https://photolink/1',
-        checkinTime: new Date('05/08/2024'),
-        checkoutTime: new Date('10/08/2024'),
-        rating : 4.1
-      },
-      {
-        roomNumber : 3,
-        roomType: 'Private Suite',
-        amenities: 'Air Conditioner, Free Wi-Fi, TV, BathRoom, Kitchen',
-        price: 500,
-        photos: 'https://photolink/1',
-        checkinTime: new Date('05/08/2024'),
-        checkoutTime: new Date('10/08/2024'),
-        rating : 4.9
-      }
-    ]
+  ngOnInit() : void {
+    this.roomList = this.roomService.getRooms();
   }
 
   toggle() {
