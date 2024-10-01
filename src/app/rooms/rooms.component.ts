@@ -36,7 +36,11 @@ export class RoomsComponent implements DoCheck, AfterViewInit, AfterViewChecked 
   constructor(private roomService : RoomsService) {};
 
   ngOnInit() : void {
-    this.roomList = this.roomService.getRooms();
+    this.roomService.getRooms().subscribe(
+      rooms => {
+        this.roomList = rooms;
+      }
+    );
   }
 
   toggle() {
@@ -50,7 +54,7 @@ export class RoomsComponent implements DoCheck, AfterViewInit, AfterViewChecked 
 
   addRoom() {
     const room : RoomDetails = {
-      roomNumber : 4,
+      roomNumber : '4',
       roomType: 'Deluxe Room',
       amenities: 'Air Conditioner, Free Wi-Fi, TV, BathRoom, Kitchen',
       price: 1999,

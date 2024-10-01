@@ -1,17 +1,18 @@
-import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RoomsComponent } from './rooms/rooms.component';
 import { CommonModule } from '@angular/common';
 import { ContainerComponent } from "./container/container.component";
 import { EmployeeComponent } from "./employee/employee.component";
 import { localStorageToken } from './localstorage.token';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'hinv-root',
   standalone: true,
-  imports: [RouterOutlet, RoomsComponent, CommonModule, ContainerComponent, EmployeeComponent],
+  imports: [RouterOutlet, RoomsComponent, CommonModule, ContainerComponent, EmployeeComponent, HttpClientModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
 
